@@ -1,0 +1,11 @@
+#! bin/bash/
+mkdir adh
+cd adh
+for i in {1..100}
+do
+touch -d "2 days ago" f$i.txt
+dd if=/dev/zero of=f$i.txt bs=10000 count1
+cat /dev/urandom | tr -dc 'a-zA-z0-9' | fold -w 16 | head -n 1
+chmod +r f$i.txt
+chattr +i f$i.txt
+done
